@@ -22,6 +22,7 @@ function App() {
 	// const [term, setTerm] = useState(false);
 
 	const [inputFields, setInputFields] = useState({
+		id: '',
 		email: '',
 		password: '',
 		term: false
@@ -49,7 +50,9 @@ function App() {
 		// }
 		// console.log('submit payload', payload)
 
-		fetch('http://localhost:3000/auth/add', {
+    // fetch('http://localhost:3000/auth/add', {
+		// fetch('http://localhost:3000/auth/edit', {
+    fetch('http://localhost:3000/auth/del', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -68,6 +71,15 @@ function App() {
             <form onSubmit={onSubmit}>
               <div className="mb-3">
                 <label for="exampleInputEmail1" className="form-label">
+                  id
+                <input
+                  type="text"
+				          name="id"
+                  className="form-control"
+                  id="exampleInputId1"
+                  aria-describedby="emailHelp"
+				  onChange={handleChange}
+                />
                   Email address
                 </label>
                 <input

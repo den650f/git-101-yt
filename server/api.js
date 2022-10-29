@@ -11,9 +11,42 @@ app.post("/auth/add", (req, res) => {
     let sql_add = `INSERT INTO auth (email,password) VALUES ('${auth.email}','${auth.password}')`;
     client.query(sql_add, (err,result_add)=>{
         if(!err){
-            console.log("Insertion was successful.");
-            res.json("Insertion was successful.");
+            console.log("Insert was successful.");
+            res.json("Insert was successful.");
             // res.json(result_add.rows);
+            // console.table(result.rows);
+        }else{
+            console.log(err.message);
+        }
+    })
+    client.end;
+})
+
+app.post("/auth/edit", (req, res) => {
+    const auth = req.body;
+    let sql_edit = `UPDATE auth SET email='${auth.email}', password='${auth.password}' WHERE id='${auth.id}'`;
+    client.query(sql_edit, (err,result_edit)=>{
+        if(!err){
+            console.log("Update was successful.");
+            res.json("Update was successful.");
+            // res.json(result_edit.rows);
+            // console.table(result.rows);
+        }else{
+            console.log(err.message);
+        }
+    })
+    client.end;
+})
+
+
+app.post("/auth/del", (req, res) => {
+    const auth = req.body;
+    let sql_edit = `DELETE FROM auth WHERE id='${auth.id}'`;
+    client.query(sql_edit, (err,result_edit)=>{
+        if(!err){
+            console.log("Delete was successful.");
+            res.json("Delete was successful.");
+            // res.json(result_edit.rows);
             // console.table(result.rows);
         }else{
             console.log(err.message);
