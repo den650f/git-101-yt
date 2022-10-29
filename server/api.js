@@ -3,32 +3,22 @@ const client = require('./connect.js');
 const express = require('express')
 const app = express()
 
+// parse application/json
+app.use(express.json())
 
-
-app.get("/auth/login", (req, res) => {
-    // const auth = req.body;
-    // let sql_add = `INSERT INTO auth (email,password) VALUES ('${auth.email}','${auth.password}')`;
-    // client.query(sql_add, (err,result_add)=>{
-    //     if(!err){
-    //         console.log(result_add.rows);
-    //         // res.json(result_add.rows);
-    //         // console.table(result.rows);
-    //     }else{
-    //         console.log(err.message);
-    //     }
-    // })
-    
-    let sql_show = `SELECT * FROM auth`;
-    client.query(sql_show, (err,result_show)=>{
+app.post("/auth/add", (req, res) => {
+    const auth = req.body;
+    let sql_add = `INSERT INTO auth (email,password) VALUES ('${auth.email}','${auth.password}')`;
+    client.query(sql_add, (err,result_add)=>{
         if(!err){
-            console.log(result_show.rows);
-            res.json(result_show.rows);
+            console.log("Insertion was successful.");
+            res.json("Insertion was successful.");
+            // res.json(result_add.rows);
             // console.table(result.rows);
         }else{
             console.log(err.message);
         }
     })
-    
     client.end;
 })
 

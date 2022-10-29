@@ -49,7 +49,7 @@ function App() {
 		// }
 		// console.log('submit payload', payload)
 
-		fetch('/api/auth/login', {
+		fetch('http://localhost:3000/auth/add', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
